@@ -1,3 +1,5 @@
+package io.github.mehdicharife.missionorderservice.domain;
+
 
 @Entity
 public class MissionOrder {
