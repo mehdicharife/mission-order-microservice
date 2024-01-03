@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 import io.github.mehdicharife.missionorderservice.domain.Mission;
 import io.github.mehdicharife.missionorderservice.event.MissionTransportTreatedEvent;
-import io.github.mehdicharife.missionorderservice.service.MissionOrderService;
+//import io.github.mehdicharife.missionorderservice.service.MissionOrderService;
 
 @Component
 @RabbitListener(queues="${missionTransportTreatedQueueName}")
