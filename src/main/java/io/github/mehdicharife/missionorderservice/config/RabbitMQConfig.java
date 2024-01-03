@@ -24,6 +24,7 @@ public class RabbitMQConfig {
         return QueueBuilder.durable(MISSION_TRANSPORT_TREATED_QUEUE_NAME).build();
     }
     
+    
     @Bean
     public Binding missionTransportTreatedExchangeBinding(Queue missionTransportTreatedQueue) {
         return new Binding(

@@ -1,9 +1,12 @@
 package io.github.mehdicharife.missionorderservice.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class MissionOrder {
 
+    @Id
     private Long id;
     
     private Long missionId;
