@@ -13,6 +13,15 @@ public class MissionOrder {
 
     private Long professorId;
 
+    public MissionOrder() {
+
+    }
+
+    public MissionOrder(Long missionId, Long professorId) {
+        this.missionId = missionId;
+        this.professorId = professorId;
+    }
+
 
     public Long getId() {
         return this.id;

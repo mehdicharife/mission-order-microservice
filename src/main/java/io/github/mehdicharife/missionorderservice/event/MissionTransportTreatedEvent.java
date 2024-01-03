@@ -7,6 +7,8 @@ public class MissionTransportTreatedEvent {
 
     private Long requestId;
 
+    private Long professorId;
+
 
     public Long getMissionId() {
         return this.missionId;
@@ -24,5 +26,23 @@ public class MissionTransportTreatedEvent {
         this.requestId = requestId;
     }
 
-    
+
+    public Long getProfessorId() {
+        return this.professorId;
+    }
+
+    public void setProfessorId(Long professorId) {
+        this.professorId = professorId;
+    }
+
+
+    @Override
+    public String toString() {
+        return "{" +
+            " missionId='" + getMissionId() + "'" +
+            ", requestId='" + getRequestId() + "'" +
+            ", professorId='" + getProfessorId() + "'" +
+            "}";
+    }
+
 }
