@@ -10,7 +10,9 @@ import org.springframework.web.client.RestTemplate;
 
 import io.github.mehdicharife.missionorderservice.domain.Mission;
 import io.github.mehdicharife.missionorderservice.domain.MissionOrder;
+import io.github.mehdicharife.missionorderservice.domain.Professor;
 import io.github.mehdicharife.missionorderservice.event.MissionTransportTreatedEvent;
+import io.github.mehdicharife.missionorderservice.service.MissionOrderPrinter;
 //import io.github.mehdicharife.missionorderservice.service.MissionOrderService;
 import io.github.mehdicharife.missionorderservice.service.MissionOrderService;
 
@@ -19,8 +21,11 @@ import io.github.mehdicharife.missionorderservice.service.MissionOrderService;
 public class MissionTransportTreatedEventListener {
 
     
-    @Autowired
-    private MissionOrderService missionOrderService;
+    //@Autowired
+    //private MissionOrderService missionOrderService;
+
+    //@Autowired
+    //private MissionOrderPrinter missionOrderPrinter;
 
     @Autowired
     private RestTemplate restTemplate;
@@ -30,16 +35,20 @@ public class MissionTransportTreatedEventListener {
     
     @RabbitHandler
     public void react(MissionTransportTreatedEvent missionTransportTreatedEvent) {
-        MissionOrder missionOrder = new MissionOrder(
-            missionTransportTreatedEvent.getMissionId(),
-            missionTransportTreatedEvent.getProfessorId()
-        );
+        Long missionId = missionTransportTreatedEvent.getMissionId();
+        Long professorId = missionTransportTreatedEvent.getProfessorId();
 
-        this.missionOrderService.saveMissionOrder(missionOrder);
+        MissionOrder missionOrder = new MissionOrder(missionId, professorId);
+        
+        Mission mission = this.restTemplate.getForObject(esb + "missions/" + missionId, Mission.class);
+        Professor professor = this.restTemplate.getForObject(esb + "professors/" + professorId, Professor.class);
+        
+        //String fileName = this.missionOrderPrinter.generateMissionOrderDocument(mission, professor);
+        //missionOrder.setFileName(fileName);
 
-        /* TODO: File Generation
-        Mission mission = this.restTemplate.getForObject(esb + "missions/" + missionTransportTreatedEvent.getMissionId(), Mission.class);
-        MissionO
-        */
+        System.out.println(mission);
+        System.out.println(professor);
+
+        //this.missionOrderService.saveMissionOrder(missionOrder);
     }
 }

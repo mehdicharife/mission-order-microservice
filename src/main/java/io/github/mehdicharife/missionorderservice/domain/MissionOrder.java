@@ -13,6 +13,8 @@ public class MissionOrder {
 
     private Long professorId;
 
+    private String fileName;
+
     public MissionOrder() {
 
     }
@@ -45,6 +47,14 @@ public class MissionOrder {
 
     public void setProfessorId(Long professorId) {
         this.professorId = professorId;
+    }
+
+    public String getFileName() {
+        return this.fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     
